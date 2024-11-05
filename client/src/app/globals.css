@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+.app {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  @apply bg-white;
+  @apply text-sm;
+  @apply dark:bg-black;
+}

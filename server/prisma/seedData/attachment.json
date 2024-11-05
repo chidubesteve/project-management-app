@@ -1,0 +1,92 @@
+[
+  {
+    "taskId": 1,
+    "fileURL": "i1.jpg",
+    "fileName": "DesignDoc.pdf",
+    "uploadedById": 1,
+    "longitude": -122.4194,
+    "latitude": 37.7749,
+    "timeOfUpload": "2021-01-01T00:00:00.000Z"
+  },
+  {
+    "taskId": 2,
+    "fileURL": "i2.jpg",
+    "fileName": "NavAlgorithm.pdf",
+    "uploadedById": 3,
+    "longitude": -122.4194,
+    "latitude": 37.7749,
+    "timeOfUpload": "2021-01-02T00:00:00.000Z"
+  },
+  {
+    "taskId": 3,
+    "fileURL": "i3.jpg",
+    "fileName": "EnergySolutions.pdf",
+    "uploadedById": 5,
+    "longitude": -122.4194,
+    "latitude": 37.7749,
+    "timeOfUpload": "2021-01-03T00:00:00.000Z"
+  },
+  {
+    "taskId": 4,
+    "fileURL": "i4.jpg",
+    "fileName": "SoftwareWorkflow.pdf",
+    "uploadedById": 7,
+    "longitude": -122.4194,
+    "latitude": 37.7749,
+    "timeOfUpload": "2021-01-04T00:00:00.000Z"
+  },
+  {
+    "taskId": 5,
+    "fileURL": "i5.jpg",
+    "fileName": "AIPredictions.pdf",
+    "uploadedById": 9,
+    "longitude": -122.4194,
+    "latitude": 37.7749,
+    "timeOfUpload": "2021-01-05T00:00:00.000Z"
+  },
+  {
+    "taskId": 6,
+    "fileURL": "i6.jpg",
+    "fileName": "BiotechTest.pdf",
+    "uploadedById": 11,
+    "longitude": -122.4194,
+    "latitude": 37.7749,
+    "timeOfUpload": "2021-01-06T00:00:00.000Z"
+  },
+  {
+    "taskId": 7,
+    "fileURL": "i7.jpg",
+    "fileName": "GolfAI.pdf",
+    "uploadedById": 13,
+    "longitude": -122.4194,
+    "latitude": 37.7749,
+    "timeOfUpload": "2021-01-07T00:00:00.000Z"
+  },
+  {
+    "taskId": 8,
+    "fileURL": "i8.jpg",
+    "fileName": "HotelDB.pdf",
+    "uploadedById": 15,
+    "longitude": -122.4194,
+    "latitude": 37.7749,
+    "timeOfUpload": "2021-01-08T00:00:00.000Z"
+  },
+  {
+    "taskId": 9,
+    "fileURL": "i6.jpg",
+    "fileName": "BiotechTest.pdf",
+    "uploadedById": 17,
+    "longitude": -232.4194,
+    "latitude": 37.7749,
+    "timeOfUpload": "2021-01-06T00:00:00.000Z"
+  },
+  {
+    "taskId": 10,
+    "fileURL": "i6.jpg",
+    "fileName": "BiotechTest.pdf",
+    "uploadedById": 19,
+    "longitude": -122.4194,
+    "latitude": 839.7749,
+    "timeOfUpload": "2021-01-06T00:00:00.000Z"
+  }
+]
