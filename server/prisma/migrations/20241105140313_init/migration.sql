@@ -74,8 +74,8 @@ CREATE TABLE "Attachment" (
     "uploadedById" INTEGER NOT NULL,
     "fileURL" TEXT NOT NULL,
     "fileName" TEXT,
-    "longitude" DOUBLE PRECISION NOT NULL,
-    "latitude" DOUBLE PRECISION NOT NULL,
+    "longitude" DECIMAL(65,30) NOT NULL,
+    "latitude" DECIMAL(65,30) NOT NULL,
     "timeOfUpload" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Attachment_pkey" PRIMARY KEY ("id")
