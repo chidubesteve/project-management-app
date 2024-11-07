@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
-import NavBar from "./(components)/NavBar";
-import Sidebar from "./(components)/Sidebar";
+import NavBar from "../components/NavBar";
+import Sidebar from "../components/Sidebar";
 import StoreProvider, { useAppSelector } from "./store";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
@@ -18,7 +18,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     }
   });
   return (
-    <div className="flex min-h-screen w-full bg-gray-50 text-gray-900">
+    <div className="flex max-h-screen min-h-full w-full bg-gray-50 text-gray-900">
       {/* Sidebar */}
       <Sidebar />
       <main
