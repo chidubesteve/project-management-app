@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { get } from "http";
 
 export interface Project {
-  name?: string;
+  id: number;
+  name: string;
   description?: string;
   startDate?: string;
   endDate?: string;
@@ -17,7 +17,7 @@ export enum Priority {
 
 export enum Status {
   ToDo = "To Do",
-  launch = "Launch",
+  Launch = "Launch",
   WorkInProgress = "Work In Progress",
   UnderReview = "Under Review",
   Completed = "Completed",
@@ -58,8 +58,13 @@ export interface Task {
 
   author?: User;
   assignee?: User;
-  comments?: Comment;
-  attachments?: Attachment;
+  comments?: Comment[];
+  attachments?: Attachment[];
+}
+export interface SearchResults {
+  tasks?: Task[];
+  projects?: Project[];
+  users?: User[];
 }
 
 export const api = createApi({
@@ -103,8 +108,8 @@ export const api = createApi({
       }),
       invalidatesTags: ["Projects"],
     }),
-    getTasks: builder.query<Task[], [projectId: number]>({
-      query: (projectId) => `tasks?projectId=${projectId}`,
+    getTasks: builder.query<Task[], {projectId: number}>({
+      query: ({projectId}) => `tasks?projectId=${projectId}`,
       providesTags: (result) =>
         result
           ? result.map(({ id }) => ({ type: "Tasks" as const, id }))
