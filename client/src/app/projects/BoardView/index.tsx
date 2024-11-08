@@ -6,16 +6,16 @@ import {
   useUpdateTaskStatusMutation,
 } from "@/state/services/api";
 import {
-  AlertCircle,
   EllipsisVertical,
   MessageSquareMore,
   Plus,
 } from "lucide-react";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { formatDateToLocalTime } from "@/utils/dateFormater";
 import Image from "next/image";
+import FetchingError from "@/components/DataFetching/FetchingError";
+import FetchingState from "@/components/DataFetching/FetchingState";
 
 type BoardProps = {
   id: string;
@@ -29,23 +29,19 @@ const BoardView = ({ id, setIsModalNewTaskOpen }: BoardProps) => {
     isLoading,
     error,
   } = useGetTasksQuery({ projectId: Number(id) });
-  console.log("This is the result from the number: ", Number(id));
   const [updateTaskStatus] = useUpdateTaskStatusMutation();
 
   const moveTask = (taskId: number, toStatus: Status) => {
     updateTaskStatus({ taskId, status: toStatus });
   };
 
-  if (error as FetchBaseQueryError) {
-    console.error("Error fetching projects:", error);
-    return (
-      <div className="flex h-[60vh] w-[100%] items-center justify-center self-end">
-        <AlertCircle className="dark:text-white" />
-        <p className="ml-2 text-lg font-medium dark:text-white">
-          Sorry, Couldn&apos;t load tasks
-        </p>
-      </div>
-    );
+  if (isLoading)
+    return <FetchingState />
+    
+
+  if (error) {
+    console.error("Error fetching tasks:", error);
+    return <FetchingError message={"Sorry, Couldn&apos;t fetch tasks"} />;
   }
   return (
     <DndProvider backend={HTML5Backend}>
@@ -139,7 +135,6 @@ const TaskColumn = ({
           <Task
             key={task.id}
             task={task}
-            setIsModalNewTaskOpen={setIsModalNewTaskOpen}
           />
         ))}
     </div>
