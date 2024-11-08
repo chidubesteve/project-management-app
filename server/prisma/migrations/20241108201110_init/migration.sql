@@ -54,6 +54,7 @@ CREATE TABLE "Task" (
     "projectId" INTEGER NOT NULL,
     "authorUserId" INTEGER NOT NULL,
     "assignedUserId" INTEGER,
+    "LGA" TEXT,
 
     CONSTRAINT "Task_pkey" PRIMARY KEY ("id")
 );
@@ -74,8 +75,8 @@ CREATE TABLE "Attachment" (
     "uploadedById" INTEGER NOT NULL,
     "fileURL" TEXT NOT NULL,
     "fileName" TEXT,
-    "longitude" DECIMAL(65,30) NOT NULL,
-    "latitude" DECIMAL(65,30) NOT NULL,
+    "longitude" DOUBLE PRECISION NOT NULL,
+    "latitude" DOUBLE PRECISION NOT NULL,
     "timeOfUpload" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Attachment_pkey" PRIMARY KEY ("id")

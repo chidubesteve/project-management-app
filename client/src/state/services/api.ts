@@ -60,6 +60,7 @@ export interface Task {
   assignee?: User;
   comments?: Comment[];
   attachments?: Attachment[];
+  LGA?: string;
 }
 export interface SearchResults {
   tasks?: Task[];

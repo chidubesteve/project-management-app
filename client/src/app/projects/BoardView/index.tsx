@@ -232,9 +232,13 @@ const Task = ({ task }: TaskProps) => {
           {startDate && <span>{startDate}</span>} {"\u00A0\u2013\u00A0"}
           {dueDate && <span>{dueDate}</span>}
         </div>
+        <div className="flex items-center justify-between">
+
         <p className="mt-2 text-base text-gray-600 dark:text-neutral-500">
           {task.description}
-        </p>
+          </p>
+          {task.LGA && <p>L.G.A: {task.LGA}</p>}
+        </div>
         <div className="ml-4 border-t border-gray-200 dark:border-stroke-dark" />
 
         {/* Assigned users */}

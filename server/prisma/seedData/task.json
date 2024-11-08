@@ -10,7 +10,8 @@
     "dueDate": "2023-04-10T00:00:00Z",
     "projectId": 1,
     "authorUserId": 1,
-    "assignedUserId": 2
+    "assignedUserId": 2,
+    "LGA": "Enugu-North"
   },
   {
     "id": 2,
@@ -23,7 +24,8 @@
     "dueDate": "2023-05-15T00:00:00Z",
     "projectId": 2,
     "authorUserId": 3,
-    "assignedUserId": 4
+    "assignedUserId": 4,
+       "LGA": "Enugu-South"
   },
   {
     "id": 3,
@@ -36,7 +38,8 @@
     "dueDate": "2023-09-20T00:00:00Z",
     "projectId": 3,
     "authorUserId": 5,
-    "assignedUserId": 6
+    "assignedUserId": 6,
+    "LGA": "Enugu-West"
   },
   {
     "id": 4,
@@ -49,7 +52,8 @@
     "dueDate": "2023-06-25T00:00:00Z",
     "projectId": 4,
     "authorUserId": 7,
-    "assignedUserId": 8
+    "assignedUserId": 8,
+    "LGA": "Enugu-East"
   },
   {
     "id": 5,
@@ -62,7 +66,8 @@
     "dueDate": "2023-10-20T00:00:00Z",
     "projectId": 5,
     "authorUserId": 9,
-    "assignedUserId": 10
+    "assignedUserId": 10,
+    "LGA": "Nkanu-North"
   },
   {
     "id": 6,
@@ -75,7 +80,8 @@
     "dueDate": "2023-08-01T00:00:00Z",
     "projectId": 6,
     "authorUserId": 11,
-    "assignedUserId": 12
+    "assignedUserId": 12,
+    "LGA": "Nkanu-South"
   },
   {
     "id": 7,
@@ -88,7 +94,8 @@
     "dueDate": "2023-11-15T00:00:00Z",
     "projectId": 7,
     "authorUserId": 13,
-    "assignedUserId": 14
+    "assignedUserId": 14,
+    "LGA": "Nkanu-East"
   },
   {
     "id": 8,
@@ -101,7 +108,8 @@
     "dueDate": "2023-10-01T00:00:00Z",
     "projectId": 8,
     "authorUserId": 15,
-    "assignedUserId": 16
+    "assignedUserId": 16,
+    "LGA": "Nkanu-West"
   },
   {
     "id": 9,
@@ -114,7 +122,8 @@
     "dueDate": "2023-12-10T00:00:00Z",
     "projectId": 9,
     "authorUserId": 17,
-    "assignedUserId": 18
+    "assignedUserId": 18,
+    "LGA": "Igbo-Etiti"
   },
   {
     "id": 10,
@@ -127,7 +136,8 @@
     "dueDate": "2024-01-05T00:00:00Z",
     "projectId": 10,
     "authorUserId": 19,
-    "assignedUserId": 20
+    "assignedUserId": 20,
+    "LGA": "Igbo-Etiti"
   },
   {
     "id": 11,
@@ -140,7 +150,8 @@
     "dueDate": "2023-12-10T00:00:00Z",
     "projectId": 5,
     "authorUserId": 1,
-    "assignedUserId": 3
+    "assignedUserId": 3,
+    "LGA": "Igbo-Etiti"
   },
   {
     "id": 12,
