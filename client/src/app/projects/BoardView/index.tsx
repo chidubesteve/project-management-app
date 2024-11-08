@@ -5,11 +5,7 @@ import {
   useGetTasksQuery,
   useUpdateTaskStatusMutation,
 } from "@/state/services/api";
-import {
-  EllipsisVertical,
-  MessageSquareMore,
-  Plus,
-} from "lucide-react";
+import { EllipsisVertical, MessageSquareMore, Plus } from "lucide-react";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { formatDateToLocalTime } from "@/utils/dateFormater";
@@ -35,9 +31,7 @@ const BoardView = ({ id, setIsModalNewTaskOpen }: BoardProps) => {
     updateTaskStatus({ taskId, status: toStatus });
   };
 
-  if (isLoading)
-    return <FetchingState />
-    
+  if (isLoading) return <FetchingState />;
 
   if (error) {
     console.error("Error fetching tasks:", error);
@@ -132,10 +126,7 @@ const TaskColumn = ({
       {tasks
         .filter((task) => task.status === status)
         .map((task) => (
-          <Task
-            key={task.id}
-            task={task}
-          />
+          <Task key={task.id} task={task} />
         ))}
     </div>
   );
@@ -233,11 +224,14 @@ const Task = ({ task }: TaskProps) => {
           {dueDate && <span>{dueDate}</span>}
         </div>
         <div className="flex items-center justify-between">
-
-        <p className="mt-2 text-base text-gray-600 dark:text-neutral-500">
-          {task.description}
+          <p className="mt-2 text-base text-gray-600 dark:text-neutral-500">
+            {task.description}
           </p>
-          {task.LGA && <p>L.G.A: {task.LGA}</p>}
+          {task.LGA && (
+            <p className="text-gray-600 dark:text-neutral-500">
+              L.G.A:<br/> {task.LGA}
+            </p>
+          )}
         </div>
         <div className="ml-4 border-t border-gray-200 dark:border-stroke-dark" />
 
