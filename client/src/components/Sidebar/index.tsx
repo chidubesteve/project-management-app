@@ -26,6 +26,7 @@ import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { setIsSideBarCollapsed } from "@/state";
 import { useGetProjectsQuery } from "@/state/services/api";
+import FetchingError from "../DataFetching/FetchingError";
 
 const Sidebar = () => {
   const [showProjects, setShowProjects] = useState(true);
@@ -40,15 +41,8 @@ const Sidebar = () => {
   } = useGetProjectsQuery();
 
   if (error) {
-    console.error("Error fetching projects:", (error as Error).message);
-    return (
-      <div className="flex h-full w-full items-center justify-center">
-        <AlertCircle className="dark:text-white" />
-        <p className="ml-2 text-base font-medium dark:text-white">
-          Sorry, Couldn&apos;t load projects
-        </p>
-      </div>
-    );
+    console.error("Error fetching projects:", error);
+    return <FetchingError message={"Sorry, Couldn't fetch projects"} />;
   }
 
   const dispatch = useAppDispatch();
