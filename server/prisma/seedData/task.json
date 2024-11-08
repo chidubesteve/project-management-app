@@ -25,7 +25,7 @@
     "projectId": 2,
     "authorUserId": 3,
     "assignedUserId": 4,
-       "LGA": "Enugu-South"
+    "LGA": "Enugu-South"
   },
   {
     "id": 3,
@@ -140,20 +140,6 @@
     "LGA": "Igbo-Etiti"
   },
   {
-    "id": 11,
-    "title": "Task 11",
-    "description": "Improve water supply infrastructure.",
-    "status": "Work In Progress",
-    "priority": "Urgent",
-    "tags": "Water, Infrastructure",
-    "startDate": "2023-06-10T00:00:00Z",
-    "dueDate": "2023-12-10T00:00:00Z",
-    "projectId": 5,
-    "authorUserId": 1,
-    "assignedUserId": 3,
-    "LGA": "Igbo-Etiti"
-  },
-  {
     "id": 12,
     "title": "Task 12",
     "description": "Enhance electricity supply in Enugu.",
@@ -164,7 +150,8 @@
     "dueDate": "2024-01-05T00:00:00Z",
     "projectId": 1,
     "authorUserId": 2,
-    "assignedUserId": 4
+    "assignedUserId": 4,
+    "LGA": "Enugu North"
   },
   {
     "id": 13,
@@ -177,7 +164,8 @@
     "dueDate": "2023-07-15T00:00:00Z",
     "projectId": 2,
     "authorUserId": 5,
-    "assignedUserId": 6
+    "assignedUserId": 6,
+    "LGA": "Enugu South"
   },
   {
     "id": 14,
@@ -190,7 +178,8 @@
     "dueDate": "2024-01-05T00:00:00Z",
     "projectId": 3,
     "authorUserId": 7,
-    "assignedUserId": 8
+    "assignedUserId": 8,
+    "LGA": "Enugu East"
   },
   {
     "id": 15,
@@ -203,7 +192,8 @@
     "dueDate": "2023-12-10T00:00:00Z",
     "projectId": 4,
     "authorUserId": 9,
-    "assignedUserId": 10
+    "assignedUserId": 10,
+    "LGA": "Nsukka"
   },
   {
     "id": 16,
@@ -216,7 +206,8 @@
     "dueDate": "2024-01-05T00:00:00Z",
     "projectId": 5,
     "authorUserId": 11,
-    "assignedUserId": 12
+    "assignedUserId": 12,
+    "LGA": "Oji River"
   },
   {
     "id": 17,
@@ -229,7 +220,8 @@
     "dueDate": "2023-12-10T00:00:00Z",
     "projectId": 6,
     "authorUserId": 13,
-    "assignedUserId": 14
+    "assignedUserId": 14,
+    "LGA": "Udi"
   },
   {
     "id": 18,
@@ -242,7 +234,8 @@
     "dueDate": "2024-01-05T00:00:00Z",
     "projectId": 7,
     "authorUserId": 15,
-    "assignedUserId": 16
+    "assignedUserId": 16,
+    "LGA": "Awgu"
   },
   {
     "id": 19,
@@ -255,7 +248,8 @@
     "dueDate": "2023-12-10T00:00:00Z",
     "projectId": 8,
     "authorUserId": 17,
-    "assignedUserId": 18
+    "assignedUserId": 18,
+    "LGA": "Ezeagu"
   },
   {
     "id": 20,
@@ -268,7 +262,8 @@
     "dueDate": "2024-01-05T00:00:00Z",
     "projectId": 9,
     "authorUserId": 19,
-    "assignedUserId": 20
+    "assignedUserId": 20,
+    "LGA": "Igbo-Eze North"
   },
   {
     "id": 21,
