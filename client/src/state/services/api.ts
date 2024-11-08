@@ -15,11 +15,6 @@ export enum Priority {
   backLog = "Backlog",
 }
 
-export enum taskGanttType {
-  task = "task",
-  milestone = "milestone",
-}
-
 export enum Status {
   ToDo = "To Do",
   Launch = "Launch",
@@ -58,8 +53,6 @@ export interface Task {
   dueDate?: string;
   points?: number;
   projectId: number;
-  type?: taskGanttType; //for gantt chart could be either "task" or "milestone"
-  dependencies?: string[]; //for gantt chart should be the id of tasks that this task depends on
   authorUserId?: number;
   assignedUserId?: number;
 
