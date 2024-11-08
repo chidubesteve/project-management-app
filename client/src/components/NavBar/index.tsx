@@ -13,7 +13,7 @@ const NavBar = () => {
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
   return (
     <div
-      className={`fixed flex items-center justify-between bg-white px-4 py-3 dark:bg-black z-30 ${isSideBarCollapsed ? "w-full" : "w-[calc(100%_-_20%_+_2.5rem)]"}`}
+      className={`flex items-center justify-between bg-white px-4 py-3 dark:bg-black z-30"}`}
     >
       {/* Hamburger menu */}
       <div className="flex items-center gap-8">
