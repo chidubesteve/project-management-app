@@ -45,7 +45,7 @@ model Project {
   startDate    DateTime?
   endDate      DateTime?
   tasks        Task[]
-  teamId       Int?
+  userId       Int?
   projectTeams ProjectTeam[]
   // user         User[]
 }

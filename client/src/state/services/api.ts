@@ -6,6 +6,7 @@ export interface Project {
   description?: string;
   startDate?: string;
   endDate?: string;
+  userId?: number;
 }
 export enum Priority {
   urgent = "Urgent",
