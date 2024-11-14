@@ -40,15 +40,15 @@ const Sidebar = () => {
     error,
   } = useGetProjectsQuery();
 
+  const dispatch = useAppDispatch();
+  const isSideBarCollapsed = useAppSelector(
+    (state) => state.global.isSideBarCollapsed,
+  );
   if (error) {
     console.error("Error fetching projects:", error);
     return <FetchingError message={"Sorry, Couldn't fetch projects"} />;
   }
 
-  const dispatch = useAppDispatch();
-  const isSideBarCollapsed = useAppSelector(
-    (state) => state.global.isSideBarCollapsed,
-  );
 
   const sideBarClassNames = `flex flex-col max-h-screen min-h-full overflow-y-scroll justify-between shadow-xl transition-all duration-300 dark:bg-black dark:text-white bg-white   [&::-webkit-scrollbar]:w-2
   [&::-webkit-scrollbar-track]:bg-gray-100
