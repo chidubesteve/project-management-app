@@ -8,6 +8,13 @@ export interface Project {
   endDate?: string;
   userId?: number;
 }
+
+export interface Comment {
+  id: number;
+  text: string;
+  userId: number;
+  taskId: number;
+}
 export enum Priority {
   urgent = "Urgent",
   high = "High",
