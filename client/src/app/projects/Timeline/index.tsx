@@ -27,7 +27,7 @@ const Timeline = ({ id, setIsModalNewTaskOpen }: TimelineProps) => {
 
   if (error) {
     console.error("Error fetching tasks:", error);
-    return <FetchingError message={"Sorry, Couldn&apos;t load timeline"} />;
+    return <FetchingError message={"Sorry, Couldn't load timeline"} />;
   }
 
   const [displayOptions, setDisplayOptions] = useState<DisplayOption>({
