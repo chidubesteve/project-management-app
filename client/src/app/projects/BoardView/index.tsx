@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Comment,
   Status,
   Task as TaskType,
   useGetTasksQuery,
@@ -12,6 +13,7 @@ import { formatDateToLocalTime } from "@/utils/dateFormater";
 import Image from "next/image";
 import FetchingError from "@/components/DataFetching/FetchingError";
 import FetchingState from "@/components/DataFetching/FetchingState";
+import CommentModal from "@/components/CommentModal";
 
 type BoardProps = {
   id: string;
@@ -115,7 +117,9 @@ const TaskColumn = ({
             </button>
             <button
               className="flex items-center justify-center rounded bg-gray-200 dark:bg-dark-tertiary dark:text-white"
-              onClick={() => setIsModalNewTaskOpen(true)}
+              onClick={() => {
+                setIsModalNewTaskOpen(true);
+              }}
             >
               <Plus size={16} />
             </button>
@@ -144,7 +148,8 @@ const Task = ({ task }: TaskProps) => {
       isDragging: !!monitor.isDragging(),
     }),
   }));
-  const [openComments, setOpenComments] = useState(false);
+  const [isCommentsOpen, setIsCommentsOpen] = useState(false);
+  const [taskComments, setTaskComments] = useState<Comment[]>([])
 
   const taskTagSplit = task.tags ? task.tags.split(",") : [];
 
@@ -153,8 +158,9 @@ const Task = ({ task }: TaskProps) => {
 
   const noOfComments = (task.comments && task.comments.length) || 0;
 
-  const handleOpenComments = (id: number) => {
-    setOpenComments(!openComments);
+  const handleOpenComments = (comments: Comment[]) => {
+    setTaskComments(comments);
+    setIsCommentsOpen(true);
   };
 
   const PriorityTag = ({ priority }: { priority: TaskType["priority"] }) => (
@@ -229,7 +235,8 @@ const Task = ({ task }: TaskProps) => {
           </p>
           {task.LGA && (
             <p className="text-gray-600 dark:text-neutral-500">
-              L.G.A:<br/> {task.LGA}
+              L.G.A:
+              <br /> {task.LGA}
             </p>
           )}
         </div>
@@ -261,9 +268,10 @@ const Task = ({ task }: TaskProps) => {
               />
             )}
           </div>
+          <CommentModal isOpen={isCommentsOpen} onClose={() => setIsCommentsOpen(false)} comments={taskComments ?? []} />
           <div
             className="flex-items-center text-gray-500 dark:text-neutral-500"
-            onClick={() => handleOpenComments(task.id)}
+            onClick={() => handleOpenComments(task.comments || [])}
           >
             <MessageSquareMore size={20} />
             <span className="ml-1 text-sm dark:text-neutral-400">
