@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
-import { Clock, Filter, Grid3X3, List, Share2, Table } from "lucide-react";
+import { Clock, Filter, Grid3X3, List, Plus, Share2, Table } from "lucide-react";
 import React, { useState } from "react";
+import ModalNewProject from "./ModalNewproject";
 
 type Props = {
   activeTab: string;
@@ -8,12 +9,27 @@ type Props = {
 };
 
 const ProjectHeader = ({ activeTab, setActiveTab }: Props) => {
-  const [isNewProjectModalOpen, setIsNewProjectModalOpen] = useState(false);
+  const [isModalNewProjectOpen, setIsModalNewProjectOpen] = useState(false);
   return (
     <div className="px-4 xl:px-8">
       {/* Modal New Project */}
+      <ModalNewProject
+        isOpen={isModalNewProjectOpen}
+        onClose={() => setIsModalNewProjectOpen(false)}
+      />
       <div className="pb-6 pt-6 lg:pb-4 lg:pt-8">
-        <Header name="ENSG PROJECT METER" />
+        <Header
+          name="ENSG PROJECT METER"
+          buttonComponent={
+            <button
+              className="flex items-center rounded bg-green-primary px-3 py-2 text-white hover:bg-green-600"
+              onClick={() => setIsModalNewProjectOpen(true)}
+            >
+              <Plus className="mr-2 h-6 w-6" />
+              New Project
+            </button>
+          }
+        />
       </div>
       {/* tabs */}
       <div className="flex flex-wrap-reverse gap-2 border-y border-gray-200 pb-[8px] pt-2 dark:border-stroke-dark md:items-center">
@@ -49,11 +65,17 @@ const ProjectHeader = ({ activeTab, setActiveTab }: Props) => {
           </button>
           <button className="text-gray-500 hover:text-gray-600 dark:text-neutral-500 dark:hover:text-gray-300">
             <Share2 size={20} />
-                  </button>
-                  <div className="relative flex items-center">
-                      <input type="text" name="search task" id="searchTask" placeholder="Search Task" className="rounded-md py-2 flex outline-gray-200 outline-2 outline dark:outline-gray-500 items-center pl-11 pr-4 focus:outline-green-500 dark:focus:outline-green-600 text-base leading-3 dark:border-dark-secondary dark:bg-dark-secondary dark:text-white dark:placeholder-white" />
-                      <Grid3X3 className="absolute left-2.5 bottom-2 h-4 w-4-text-gray-400 dark:text-neutral-300" />
-                  </div>
+          </button>
+          <div className="relative flex items-center">
+            <input
+              type="text"
+              name="search task"
+              id="searchTask"
+              placeholder="Search Task"
+              className="flex items-center rounded-md py-2 pl-11 pr-4 text-base leading-3 outline outline-2 outline-gray-200 focus:outline-green-500 dark:border-dark-secondary dark:bg-dark-secondary dark:text-white dark:placeholder-white dark:outline-gray-500 dark:focus:outline-green-600"
+            />
+            <Grid3X3 className="w-4-text-gray-400 absolute bottom-2 left-2.5 h-4 dark:text-neutral-300" />
+          </div>
         </div>
       </div>
     </div>
