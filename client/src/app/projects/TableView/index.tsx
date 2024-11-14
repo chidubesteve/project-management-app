@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import { useGetTasksQuery } from "@/state/services/api";
 import { dataGridClassNames, MuiDataGridStyles } from "@/utils/MuiDataGridStyles";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { Plus } from "lucide-react";
 import React from "react";
 
 type TableViewProps = {
@@ -90,7 +91,19 @@ const TableView = ({ id, setIsModalNewTaskOpen }: TableViewProps) => {
   return (
     <div className="h-[540px] w-full px-4 pb-8 xl:px-6">
       <div className="pt-5">
-        <Header name="Table" isSmallText />
+        <Header
+          name="Table"
+          buttonComponent={
+            <button
+              className="flex items-center rounded bg-green-primary px-3 py-2 text-white hover:bg-green-600"
+              onClick={() => setIsModalNewTaskOpen(true)}
+            >
+              <Plus className="mr-2 h-6 w-6" />
+              Add Task
+            </button>
+          }
+          isSmallText
+        />
       </div>
       <DataGrid
         rows={tasks || []}
