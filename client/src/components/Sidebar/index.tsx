@@ -60,8 +60,9 @@ const Sidebar = () => {
       <div className="flex h-full w-full flex-col justify-start">
         {/* logo */}
         <div className="z-50 flex min-h-[56px] w-full items-center justify-between bg-white px-6 pt-3 dark:bg-black">
-          <div className="flex w-full h-fit">
-            <Image src="/logo.png" alt="logo" width={50} height={50} />{" "}
+          <div className="flex h-fit w-full items-center">
+            <Image src="/logo.png" alt="logo" width={50} height={50} className="w-9" />{" "}
+            <h2 className="font-semibold text-[1.35rem] ml-2">ProjectPulse</h2>
           </div>
           {!isSideBarCollapsed && (
             <button
