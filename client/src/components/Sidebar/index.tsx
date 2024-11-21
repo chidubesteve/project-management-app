@@ -50,18 +50,18 @@ const Sidebar = () => {
   }
 
 
-  const sideBarClassNames = `flex flex-col max-h-screen min-h-full overflow-y-scroll justify-between shadow-xl transition-all duration-300 dark:bg-black dark:text-white bg-white   [&::-webkit-scrollbar]:w-2
+  const sideBarClassNames = `flex flex-col max-h-screen min-h-full overflow-y-scroll justify-between shadow-xl transition-all duration-300 dark:bg-black dark:text-white bg-white absolute z-10 [&::-webkit-scrollbar]:w-2
   [&::-webkit-scrollbar-track]:bg-gray-100
   [&::-webkit-scrollbar-thumb]:bg-gray-300
   dark:[&::-webkit-scrollbar-track]:bg-neutral-700
-  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 ${isSideBarCollapsed ? "w-0 hidden" : "w-1/5"} z-40`;
+  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 ${isSideBarCollapsed ? "w-0 hidden" : "w-[250px] md:relative lg:w-1/4 "} z-40`;
   return (
     <div className={sideBarClassNames}>
       <div className="flex h-full w-full flex-col justify-start">
         {/* logo */}
         <div className="z-50 flex min-h-[56px] w-full items-center justify-between bg-white px-6 pt-3 dark:bg-black">
-          <div className="flex w-full">
-            <Image src="/ensg-logo.png" alt="logo" width={50} height={50} />{" "}
+          <div className="flex w-full h-fit">
+            <Image src="/logo.png" alt="logo" width={50} height={50} />{" "}
           </div>
           {!isSideBarCollapsed && (
             <button
