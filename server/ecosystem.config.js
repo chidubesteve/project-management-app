@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "ENSG PROJECT METER",
+      name: "ProjectPulse",
       script: "npm",
       args: "run dev",
       env: {

@@ -19,7 +19,7 @@ const ProjectHeader = ({ activeTab, setActiveTab }: Props) => {
       />
       <div className="pb-6 pt-6 lg:pb-4 lg:pt-8">
         <Header
-          name="ENSG PROJECT METER"
+          name="ProjectPulse"
           buttonComponent={
             <button
               className="flex items-center rounded bg-green-primary px-3 py-2 text-white hover:bg-green-600"
