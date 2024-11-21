@@ -26,7 +26,7 @@ CREATE TABLE "Project" (
     "description" TEXT,
     "startDate" TIMESTAMP(3),
     "endDate" TIMESTAMP(3),
-    "teamId" INTEGER,
+    "userId" INTEGER,
 
     CONSTRAINT "Project_pkey" PRIMARY KEY ("id")
 );
