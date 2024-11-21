@@ -23,6 +23,13 @@ export enum Priority {
   backLog = "Backlog",
 }
 
+export enum Role {
+  admin = "Admin",
+  supervisor = "Supervisor",
+  contractor = "Contractor",
+  fieldWorker = "Field Worker",
+}
+
 export enum Status {
   ToDo = "To Do",
   Launch = "Launch",
@@ -79,7 +86,7 @@ export interface SearchResults {
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL }),
   reducerPath: "api",
-  tagTypes: ["Projects", "Tasks"],
+  tagTypes: ["Projects", "Tasks", "Users"],
   endpoints: (builder) => ({
     /**
      * This is a react-query endpoint that makes a GET request to the "projects" endpoint
@@ -145,8 +152,12 @@ export const api = createApi({
         { type: "Tasks", id: taskId },
       ],
     }),
-    search: builder.query<SearchResults,  string >({
+    search: builder.query<SearchResults, string>({
       query: (query) => `search?query=${query}`,
+    }),
+    getAllUsers: builder.query<User[], void>({
+      query: () => "users",
+      providesTags: ["Users"],
     }),
   }),
 });
@@ -158,4 +169,5 @@ export const {
   useCreateTaskMutation,
   useUpdateTaskStatusMutation,
   useSearchQuery,
+  useGetAllUsersQuery,
 } = api;
