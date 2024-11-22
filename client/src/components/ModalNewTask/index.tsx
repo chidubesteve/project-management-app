@@ -8,10 +8,10 @@ import AlertTitle from "@mui/material/AlertTitle";
 type Props = {
   isOpen: boolean;
   onClose: () => void;
-  id: string;
+  id?: string | null;
 };
 
-const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
+const ModalNewTask = ({ isOpen, onClose, id = null}: Props) => {
   const [createTask, { isLoading, error }] = useCreateTaskMutation();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -27,9 +27,10 @@ const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
     type: "success" | "error";
     message: string;
   } | null>(null);
+  const [projectId, setProjectId] = useState("")
 
   const handleSubmit = async () => {
-    if (!title || !authorUserId) return;
+    if (!title || !authorUserId || !(id !== null || projectId)) return;
 
     const formattedStartDate = formatISO(new Date(startDate), {
       representation: "date",
@@ -49,7 +50,7 @@ const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
       authorUserId: parseInt(authorUserId),
       assignedUserId: parseInt(assignedUserId),
       LGA: lga,
-      projectId: Number(id),
+      projectId: id !== null ? Number(id) : Number(projectId),
     };
 
     try {
@@ -75,7 +76,7 @@ const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
   };
 
   const isFormValid = () => {
-    return title && authorUserId;
+    return title && authorUserId && !(id !== null || projectId);
   };
 
   const selectStyles = `mb-4 block w-full rounded border border-gray-300 px-3 py-2 shadow-sm dark:border-dark-tertiary dark:bg-dark-tertiary dark:text-white dark:focus:outline-none`;
@@ -131,7 +132,9 @@ const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
               setPriority(Priority[e.target.value as keyof typeof Priority])
             }
           >
-            <option value="" selected>Select Priority</option>
+            <option value="" selected>
+              Select Priority
+            </option>
             <option value={Priority.low}>Low</option>
             <option value={Priority.medium}>Medium</option>
             <option value={Priority.high}>High</option>
@@ -179,6 +182,15 @@ const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
           value={assignedUserId}
           onChange={(e) => setAssignedUserId(e.target.value)}
         />
+        {id === null && (
+          <input
+            type="text"
+            className={inputStyles}
+            placeholder="ProjectId"
+            value={projectId}
+            onChange={(e) => setProjectId(e.target.value)}
+          />
+        )}
 
         <select
           name=""
