@@ -32,6 +32,10 @@ const Sidebar = () => {
   const [showProjects, setShowProjects] = useState(true);
   const [showPriority, setShowPriority] = useState(true);
   const [teamName, setTeamName] = useState("Chidube");
+  const dispatch = useAppDispatch();
+  const isSideBarCollapsed = useAppSelector(
+    (state) => state.global.isSideBarCollapsed,
+  );
 
   const {
     data: projects,
@@ -40,10 +44,6 @@ const Sidebar = () => {
     error,
   } = useGetProjectsQuery();
 
-  const dispatch = useAppDispatch();
-  const isSideBarCollapsed = useAppSelector(
-    (state) => state.global.isSideBarCollapsed,
-  );
   if (error) {
     console.error("Error fetching projects:", error);
     return <FetchingError message={"Sorry, Couldn't fetch projects"} />;
