@@ -8,10 +8,10 @@ type Props = {
 
 const UserCard = ({ user }: Props) => {
   return (
-    <div className="flex mb-3 items-center rounded p-4 shadow dark:bg-dark-secondary dark:text-white">
+    <div className="mb-3 flex items-center rounded p-4 shadow dark:bg-dark-secondary dark:text-white">
       {user.profilePictureUrl && (
         <Image
-          src={`/p1.jpeg`}
+          src={`https://project-mgt-s3-images-bucket.s3.us-east-1.amazonaws.com/p1.jpeg`}
           alt="profile picture"
           width={32}
           height={32}

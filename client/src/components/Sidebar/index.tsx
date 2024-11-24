@@ -61,8 +61,14 @@ const Sidebar = () => {
         {/* logo */}
         <div className="z-50 flex min-h-[56px] w-full items-center justify-between bg-white px-6 pt-3 dark:bg-black">
           <div className="flex h-fit w-full items-center">
-            <Image src="/logo.png" alt="logo" width={50} height={50} className="w-9" />{" "}
-            <h2 className="font-semibold text-[1.35rem] ml-2">ProjectPulse</h2>
+            <Image
+              src="https://project-mgt-s3-images-bucket.s3.us-east-1.amazonaws.com/logo.png"
+              alt="logo"
+              width={50}
+              height={50}
+              className="w-9"
+            />{" "}
+            <h2 className="ml-2 text-[1.35rem] font-semibold">ProjectPulse</h2>
           </div>
           {!isSideBarCollapsed && (
             <button

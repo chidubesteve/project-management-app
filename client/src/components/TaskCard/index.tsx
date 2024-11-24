@@ -9,14 +9,14 @@ type Props = {
 
 const TaskCard = ({ task }: Props) => {
   return (
-    <div className="mb-3 rounded shadow-md bg-white p-4 dark:bg-dark-secondary dark:text-white">
+    <div className="mb-3 rounded bg-white p-4 shadow-md dark:bg-dark-secondary dark:text-white">
       {task.attachments && task.attachments.length > 0 && (
         <div>
           <strong>Attachments: </strong>
           <div className="flex flex-wrap">
             {task.attachments && task.attachments.length > 0 && (
               <Image
-                src={`/${task.attachments[0].fileURL}`}
+                src={`https://project-mgt-s3-images-bucket.s3.us-east-1.amazonaws.com/${task.attachments[0].fileURL}`}
                 alt={task.attachments[0].fileName || "Task Attachment"}
                 width={400}
                 height={200}

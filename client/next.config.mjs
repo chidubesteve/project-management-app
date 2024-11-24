@@ -5,7 +5,12 @@ const nextConfig = {
   },
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "e7.pngegg.com" },
+      {
+        protocol: "https",
+        hostname: "project-mgt-s3-images-bucket.s3.us-east-1.amazonaws.com",
+        pathname: "/**",
+        port: "",
+      },
       { protocol: "https", hostname: "api.dicebear.com" },
     ],
   },
