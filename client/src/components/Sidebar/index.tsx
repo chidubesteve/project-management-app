@@ -52,7 +52,6 @@ const Sidebar = () => {
     }
   }, [currentUser]);
 
-
   if (!currentUser) return null;
   const currentUserDetails = currentUser?.userDetails;
 
@@ -106,7 +105,7 @@ const Sidebar = () => {
         {/* Team */}
         <div className="flex items-center gap-5 border-y-[1.5px] border-gray-200 px-8 py-4 dark:border-gray-700">
           <Image
-            src={`https://api.dicebear.com/9.x/initials/svg?seed=${teamName}`}
+            src={`https://api.dicebear.com/9.x/initials/svg?seed=${teamName ? "" : "Chidube"}`}
             alt="team avatar"
             width={40}
             height={40}
