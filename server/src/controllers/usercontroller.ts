@@ -32,6 +32,7 @@ export const createUser = async (
   res: Response
 ): Promise<void> => {
   try {
+        console.log("Incoming request body:", req.body);
     const {
       username,
       cognitoId,

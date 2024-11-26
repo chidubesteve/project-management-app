@@ -84,6 +84,21 @@ export interface Team {
   projectManagerUserId?: number;
 }
 
+async function fetchWithRetries(
+  fetchWithBQ: Function,
+  endpoint: string,
+  retries = 3,
+  delay = 1000,
+) {
+  for (let i = 0; i < retries; i++) {
+    const response = await fetchWithBQ(endpoint);
+    if (response.data) return response;
+    console.log(`Retrying (${i + 1}/${retries})...`);
+    await new Promise((resolve) => setTimeout(resolve, delay));
+  }
+  throw new Error(`Failed to fetch ${endpoint} after ${retries} retries.`);
+}
+
 export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
@@ -110,11 +125,21 @@ export const api = createApi({
           const { userSub } = session;
           const { accessToken } = session.tokens ?? {};
 
-          const userDetailsResponse = await fetchWithBQ(`users/${userSub}`);
+          const userDetailsResponse = await fetchWithRetries(
+            fetchWithBQ,
+            `users/${userSub}`,
+          );
           const userDetails = userDetailsResponse.data as User;
           console.log("This is the current user details: ", userDetails);
           console.log("This is the current user sub: ", userSub);
-          console.log("This is the current userDetailsREsponse: ", userDetailsResponse);
+          if (!userDetailsResponse.data) {
+            console.error(
+              "User details not found. Response:",
+              userDetailsResponse,
+            );
+            throw new Error("User not found in database.");
+          }
+
 
           return { data: { user, userSub, userDetails } };
         } catch (error: any) {
