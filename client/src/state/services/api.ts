@@ -103,6 +103,8 @@ export const api = createApi({
       queryFn: async (_, _queryApi, _extraoptions, fetchWithBQ) => {
         try {
           const user = await getCurrentUser();
+          console.log("This is the current user", user);
+
           const session = await fetchAuthSession();
           if (!session) throw new Error("No session found");
           const { userSub } = session;
@@ -110,6 +112,7 @@ export const api = createApi({
 
           const userDetailsResponse = await fetchWithBQ(`users/${userSub}`);
           const userDetails = userDetailsResponse.data as User;
+          console.log("This is the current user details", userDetails);
 
           return { data: { user, userSub, userDetails } };
         } catch (error: any) {

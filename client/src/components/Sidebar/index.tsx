@@ -48,6 +48,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (currentUser && currentUser?.userDetails) {
+      console.log("This is the current user",currentUser)
       setTeamName(currentUser.userDetails.username);
     }
   }, [currentUser]);

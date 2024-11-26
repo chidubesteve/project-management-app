@@ -95,7 +95,6 @@ const HomePage = () => {
     },
     {},
   );
-  console.log("priorityCount: ", priorityCount);
 
   const taskDistribution =
     priorityCount &&
@@ -103,7 +102,6 @@ const HomePage = () => {
       name: key,
       count: priorityCount[key],
     }));
-  console.log("taskDistribution: ", taskDistribution)
 
   // Calculate project status distribution
   const statusCount = projectsData?.reduce(
@@ -114,7 +112,6 @@ const HomePage = () => {
     },
     {},
   );
-  console.log("statusCount: ", statusCount);
 
   const projectStatus =
     statusCount &&
