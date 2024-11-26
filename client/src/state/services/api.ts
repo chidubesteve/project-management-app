@@ -84,20 +84,6 @@ export interface Team {
   projectManagerUserId?: number;
 }
 
-async function fetchWithRetries(
-  fetchWithBQ: Function,
-  endpoint: string,
-  retries = 3,
-  delay = 1000,
-) {
-  for (let i = 0; i < retries; i++) {
-    const response = await fetchWithBQ(endpoint);
-    if (response.data) return response;
-    console.log(`Retrying (${i + 1}/${retries})...`);
-    await new Promise((resolve) => setTimeout(resolve, delay));
-  }
-  throw new Error(`Failed to fetch ${endpoint} after ${retries} retries.`);
-}
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
@@ -125,10 +111,7 @@ export const api = createApi({
           const { userSub } = session;
           const { accessToken } = session.tokens ?? {};
 
-          const userDetailsResponse = await fetchWithRetries(
-            fetchWithBQ,
-            `users/${userSub}`,
-          );
+          const userDetailsResponse = await fetchWithBQ(`users/${userSub}`)
           const userDetails = userDetailsResponse.data as User;
           console.log("This is the current user details: ", userDetails);
           console.log("This is the current user sub: ", userSub);
