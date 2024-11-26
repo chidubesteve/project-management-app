@@ -39,7 +39,7 @@ export const createUser = async (
       profilePictureUrl = "p3.jpeg",
     } = req.body;
     const newUser = await Prisma.user.create({
-      data: { username, cognitoId, teamId, profilePictureUrl },
+      data: { cognitoId, username, profilePictureUrl, teamId },
     });
     res
       .status(201)
