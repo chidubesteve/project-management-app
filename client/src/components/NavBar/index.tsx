@@ -15,7 +15,6 @@ const NavBar = () => {
 
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
   const { data: currentUser } = useGetAuthUserQuery({
-    refetchOnMountOrArgChange: true,
   });
 
   const handleSignOut = async () => {

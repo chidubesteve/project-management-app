@@ -45,7 +45,6 @@ const Sidebar = () => {
     error,
   } = useGetProjectsQuery();
   const { data: currentUser } = useGetAuthUserQuery({
-    refetchOnMountOrArgChange: true,
   });
 
   if (error) {
