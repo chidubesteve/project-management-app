@@ -104,24 +104,21 @@ const AuthProvider = ({
             <>{children}</> // Show the authenticated app layout
           ) : (
             // Show the login page layout
-            <div className="flex h-screen flex-col items-center justify-center gap-6">
-              <div className="flex flex-col items-center gap-4">
-                {/* Logo */}
-                <Image
-                  src="https://project-mgt-s3-images-bucket.s3.us-east-1.amazonaws.com/logo.png"
-                  width={300}
-                  height={250}
-                  alt="logo"
-                  quality={100}
-                  className="h-[200px] w-auto object-contain"
-                />
-                <h1 className="text-xl font-bold">Welcome! Please sign in:</h1>
-              </div>
-
-              {/* Authenticator form */}
-              <div className="w-full max-w-md">
-                <Authenticator formFields={formFields} />
-              </div>
+            <div className="flex h-screen flex-col items-center gap-6">
+              <Image
+                src={
+                  "https://project-mgt-s3-images-bucket.s3.us-east-1.amazonaws.com/logo.png"
+                }
+                width={300}
+                height={250}
+                alt="logo"
+                quality={100}
+                className="h-[200px] w-auto object-contain"
+              />
+              <div>
+                <h1>Please sign in below:</h1>
+                </div>
+                
             </div>
           )
         }
