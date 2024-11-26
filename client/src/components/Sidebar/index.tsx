@@ -61,7 +61,7 @@ const Sidebar = () => {
 
   if (!currentUser) return null;
   const currentUserDetails = currentUser?.userDetails;
-  setTeamName(currentUserDetails.username);
+  setTeamName(currentUserDetails?.username);
 
   const sideBarClassNames = `flex flex-col max-h-screen min-h-full overflow-y-scroll justify-between shadow-xl transition-all duration-300 dark:bg-black dark:text-white bg-white absolute z-10 [&::-webkit-scrollbar]:w-2
   [&::-webkit-scrollbar-track]:bg-gray-100
