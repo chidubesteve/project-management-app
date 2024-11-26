@@ -53,7 +53,7 @@ const Sidebar = () => {
     }
   }, [currentUser]);
 
-  if (!currentUser) return null;
+  // if (!currentUser) return null;
   const currentUserDetails = currentUser?.userDetails;
 
   if (error) {
