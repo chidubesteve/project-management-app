@@ -25,7 +25,7 @@ const NavBar = () => {
     }
   };
 
-  if (!currentUser) return null;
+  // if (!currentUser) return null;
   const currentUserDetails = currentUser?.userDetails;
   return (
     <div
