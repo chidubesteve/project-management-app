@@ -118,6 +118,8 @@ const AuthProvider = ({
               <div>
                 <h1>Please sign in below:</h1>
               </div>
+              {/* Authenticator form */}
+                <Authenticator formFields={formFields} />
             </div>
           )
         }
