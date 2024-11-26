@@ -1,7 +1,7 @@
 import { Authenticator, ThemeProvider, Theme } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
 import Image from "next/image";
-import React from "react";
+import React, { ReactElement } from "react";
 import "@aws-amplify/ui-react/styles.css";
 
 Amplify.configure({
@@ -91,35 +91,37 @@ const theme: Theme = {
   },
 };
 
-const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+const AuthProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): ReactElement => {
   return (
     <ThemeProvider theme={theme}>
-      <div className="flex h-screen flex-col items-center gap-6">
-        <Image
-          src={
-            "https://project-mgt-s3-images-bucket.s3.us-east-1.amazonaws.com/logo.png"
-          }
-          width={300}
-          height={250}
-          alt="logo"
-          quality={100}
-          className="h-[200px] w-auto object-contain"
-        />
-
-        <div>
-          <Authenticator formFields={formFields}>
-            {({ user }: any) =>
-              user ? (
-                <div>{children}</div>
-              ) : (
-                <div>
-                  <h1>Please sign in below:</h1>
-                </div>
-              )
-            }
-          </Authenticator>
-        </div>
-      </div>
+      <Authenticator formFields={formFields}>
+        {({ user }) =>
+          user ? (
+            <>{children}</> // Show the authenticated app layout
+          ) : (
+            // Show the login page layout
+            <div className="flex h-screen flex-col items-center gap-6">
+              <Image
+                src={
+                  "https://project-mgt-s3-images-bucket.s3.us-east-1.amazonaws.com/logo.png"
+                }
+                width={300}
+                height={250}
+                alt="logo"
+                quality={100}
+                className="h-[200px] w-auto object-contain"
+              />
+              <div>
+                <h1>Please sign in below:</h1>
+              </div>
+            </div>
+          )
+        }
+      </Authenticator>
     </ThemeProvider>
   );
 };
