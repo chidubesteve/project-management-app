@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useAppSelector } from "@/app/store";
 import FetchingError from "@/components/DataFetching/FetchingError";
@@ -6,7 +6,12 @@ import FetchingState from "@/components/DataFetching/FetchingState";
 import Header from "@/components/Header";
 import ModalNewTask from "@/components/ModalNewTask";
 import TaskCard from "@/components/TaskCard";
-import { Priority, Task, useGetTasksByUserQuery } from "@/state/services/api";
+import {
+  Priority,
+  Task,
+  useGetAuthUserQuery,
+  useGetTasksByUserQuery,
+} from "@/state/services/api";
 import {
   dataGridClassNames,
   MuiDataGridStyles,
@@ -78,13 +83,17 @@ const ReusablePriorityPage = ({ priority }: Props) => {
   const [view, setView] = useState("list");
   const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
-  const userId = 1;
+  const { data: currentUser } = useGetAuthUserQuery({
+    refetchOnMountOrArgChange: true,
+  });
+
+  const userId = currentUser?.userDetails?.userId || null;
 
   const {
     data: tasks,
     isLoading,
     error,
-  } = useGetTasksByUserQuery({ userId }, { skip: !userId });
+  } = useGetTasksByUserQuery({ userId: userId as number}, { skip: !userId });
 
   const filteredTasks = tasks?.filter(
     (task: Task) => task.priority === priority,
