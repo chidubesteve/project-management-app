@@ -1,8 +1,11 @@
 import React from "react";
-import { Menu, Moon, Search, Settings, Sun } from "lucide-react";
+import { Menu, Moon, Search, Settings, Sun, User } from "lucide-react";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/app/store";
 import { setIsDarkMode, setIsSideBarCollapsed } from "@/state";
+import { useGetAuthUserQuery } from "@/state/services/api";
+import { signOut } from "aws-amplify/auth";
+import Image from "next/image";
 
 const NavBar = () => {
   const dispatch = useAppDispatch();
@@ -11,9 +14,23 @@ const NavBar = () => {
   );
 
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
+  const { data: currentUser } = useGetAuthUserQuery({
+    refetchOnMountOrArgChange: true,
+  });
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  };
+
+  if (!currentUser) return null;
+  const currentUserDetails = currentUser?.userDetails;
   return (
     <div
-      className={`flex items-center justify-between bg-white px-4 py-3 dark:bg-black z-30"}`}
+      className={`z-30"} flex items-center justify-between bg-white px-4 py-3 dark:bg-black`}
     >
       {/* Hamburger menu */}
       <div className="flex items-center gap-8">
@@ -63,6 +80,32 @@ const NavBar = () => {
 
         {/* separator */}
         <div className="ml-2 mr-5 hidden min-h-[2em] w-[0.1rem] bg-gray-200 md:inline-block"></div>
+
+        {/* Profile */}
+        <div className="hidden items-center justify-between gap-2 md:flex">
+          <div className="align-center flex h-9 w-9 justify-center">
+            {!!currentUserDetails?.profilePictureUrl ? (
+              <Image
+                src={`https://project-mgt-s3-images-bucket.s3.us-east-1.amazonaws.com/${currentUserDetails?.profilePictureUrl}`}
+                width={100}
+                height={50}
+                alt={currentUserDetails?.username || "User Profile Picture"}
+                className="h-full w-full rounded-full object-cover"
+              />
+            ) : (
+              <User className="h-6 w-6 cursor-pointer self-center rounded-full dark:text-white" />
+            )}
+          </div>
+          <span className="mx-3 text-gray-800 dark:text-white">
+            {currentUserDetails?.username}
+          </span>
+          <button
+            className="hidden rounded bg-green-primary px-4 py-2 text-xs font-bold text-white hover:bg-green-600 md:block"
+            onClick={handleSignOut}
+          >
+            Sign out
+          </button>
+        </div>
       </div>
     </div>
   );

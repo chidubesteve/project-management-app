@@ -25,13 +25,14 @@ import { Skeleton } from "@mui/material";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { setIsSideBarCollapsed } from "@/state";
-import { useGetProjectsQuery } from "@/state/services/api";
+import { useGetAuthUserQuery, useGetProjectsQuery } from "@/state/services/api";
 import FetchingError from "../DataFetching/FetchingError";
+import { signOut } from "aws-amplify/auth";
 
 const Sidebar = () => {
   const [showProjects, setShowProjects] = useState(true);
   const [showPriority, setShowPriority] = useState(true);
-  const [teamName, setTeamName] = useState("Chidube");
+  const [teamName, setTeamName] = useState("");
   const dispatch = useAppDispatch();
   const isSideBarCollapsed = useAppSelector(
     (state) => state.global.isSideBarCollapsed,
@@ -43,12 +44,25 @@ const Sidebar = () => {
     isFetching,
     error,
   } = useGetProjectsQuery();
+  const { data: currentUser } = useGetAuthUserQuery({
+    refetchOnMountOrArgChange: true,
+  });
 
   if (error) {
     console.error("Error fetching projects:", error);
     return <FetchingError message={"Sorry, Couldn't fetch projects"} />;
   }
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  };
 
+  if (!currentUser) return null;
+  const currentUserDetails = currentUser?.userDetails;
+  setTeamName(currentUserDetails.username);
 
   const sideBarClassNames = `flex flex-col max-h-screen min-h-full overflow-y-scroll justify-between shadow-xl transition-all duration-300 dark:bg-black dark:text-white bg-white absolute z-10 [&::-webkit-scrollbar]:w-2
   [&::-webkit-scrollbar-track]:bg-gray-100
@@ -182,6 +196,32 @@ const Sidebar = () => {
             />
           </>
         )}
+      </div>
+      <div className="z-10 mt-32 flex w-full flex-col items-center gap-4 bg-white px-8 py-4 dark:bg-black md:hidden">
+        <div className="flex w-full items-center">
+          <div className="align-center flex h-9 w-9 justify-center">
+            {!!currentUserDetails?.profilePictureUrl ? (
+              <Image
+                src={`https://pm-s3-images.s3.us-east-2.amazonaws.com/${currentUserDetails?.profilePictureUrl}`}
+                alt={currentUserDetails?.username || "User Profile Picture"}
+                width={100}
+                height={50}
+                className="h-full rounded-full object-cover"
+              />
+            ) : (
+              <User className="h-6 w-6 cursor-pointer self-center rounded-full dark:text-white" />
+            )}
+          </div>
+          <span className="mx-3 text-gray-800 dark:text-white">
+            {currentUserDetails?.username}
+          </span>
+          <button
+            className="self-start rounded bg-green-primary px-4 py-2 text-xs font-bold text-white hover:bg-green-600 md:block"
+            onClick={handleSignOut}
+          >
+            Sign out
+          </button>
+        </div>
       </div>
     </div>
   );

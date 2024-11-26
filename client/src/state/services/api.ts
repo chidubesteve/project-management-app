@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
 
 export interface Project {
   id: number;
@@ -80,14 +81,42 @@ export interface Team {
   teamId: number;
   teamName: string;
   projectOwnerUserId?: number;
-  projectManagerUserId?: number
+  projectManagerUserId?: number;
 }
 
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
+    prepareHeaders: async (headers) => {
+      const session = await fetchAuthSession();
+      const { accessToken } = session.tokens ?? {};
+      if (accessToken) {
+        headers.set("Authorization", `Bearer ${accessToken}`);
+      }
+      return headers;
+    },
+  }),
   reducerPath: "api",
   tagTypes: ["Projects", "Tasks", "Users", "Teams"],
   endpoints: (builder) => ({
+    getAuthUser: builder.query({
+      queryFn: async (_, _queryApi, _extraoptions, fetchWithBQ) => {
+        try {
+          const user = await getCurrentUser();
+          const session = await fetchAuthSession();
+          if (!session) throw new Error("No session found");
+          const { userSub } = session;
+          const { accessToken } = session.tokens ?? {};
+
+          const userDetailsResponse = await fetchWithBQ(`users/${userSub}`);
+          const userDetails = userDetailsResponse.data as User;
+
+          return { data: { user, userSub, userDetails } };
+        } catch (error: any) {
+          return { error: error.message || "Could not fetch user data" };
+        }
+      },
+    }),
     /**
      * This is a react-query endpoint that makes a GET request to the "projects" endpoint
      * and returns a list of projects.
@@ -133,7 +162,7 @@ export const api = createApi({
     }),
     getTasksByUser: builder.query<Task[], { userId: number }>({
       query: ({ userId }) => `tasks/user/${userId}`,
-      providesTags: (result) =>  
+      providesTags: (result) =>
         result
           ? result.map(({ id }) => ({ type: "Tasks" as const, id }))
           : [{ type: "Tasks" as const }],
@@ -169,7 +198,7 @@ export const api = createApi({
     getTeams: builder.query<Team[], void>({
       query: () => "teams",
       providesTags: ["Teams"],
-    })
+    }),
   }),
 });
 
@@ -182,5 +211,6 @@ export const {
   useSearchQuery,
   useGetAllUsersQuery,
   useGetTeamsQuery,
-  useGetTasksByUserQuery
+  useGetTasksByUserQuery,
+  useGetAuthUserQuery,
 } = api;
