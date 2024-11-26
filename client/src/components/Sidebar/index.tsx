@@ -23,7 +23,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "@mui/material";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { setIsSideBarCollapsed } from "@/state";
 import { useGetAuthUserQuery, useGetProjectsQuery } from "@/state/services/api";
 import FetchingError from "../DataFetching/FetchingError";
@@ -44,8 +44,17 @@ const Sidebar = () => {
     isFetching,
     error,
   } = useGetProjectsQuery();
-  const { data: currentUser } = useGetAuthUserQuery({
-  });
+  const { data: currentUser } = useGetAuthUserQuery({});
+
+  useEffect(() => {
+    if (currentUser && currentUser?.userDetails) {
+      setTeamName(currentUser.userDetails.username);
+    }
+  }, [currentUser]);
+
+
+  if (!currentUser) return null;
+  const currentUserDetails = currentUser?.userDetails;
 
   if (error) {
     console.error("Error fetching projects:", error);
@@ -58,10 +67,6 @@ const Sidebar = () => {
       console.error("Error signing out: ", error);
     }
   };
-
-  if (!currentUser) return null;
-  const currentUserDetails = currentUser?.userDetails;
-  setTeamName(currentUserDetails?.username);
 
   const sideBarClassNames = `flex flex-col max-h-screen min-h-full overflow-y-scroll justify-between shadow-xl transition-all duration-300 dark:bg-black dark:text-white bg-white absolute z-10 [&::-webkit-scrollbar]:w-2
   [&::-webkit-scrollbar-track]:bg-gray-100
