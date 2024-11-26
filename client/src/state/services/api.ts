@@ -112,7 +112,9 @@ export const api = createApi({
 
           const userDetailsResponse = await fetchWithBQ(`users/${userSub}`);
           const userDetails = userDetailsResponse.data as User;
-          console.log("This is the current user details", userDetails);
+          console.log("This is the current user details: ", userDetails);
+          console.log("This is the current user sub: ", userSub);
+          console.log("This is the current userDetailsREsponse: ", userDetailsResponse);
 
           return { data: { user, userSub, userDetails } };
         } catch (error: any) {
