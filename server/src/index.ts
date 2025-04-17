@@ -11,11 +11,30 @@ import searchRoutes from "./routes/SearchRoutes";
 import userRoute from "./routes/userRoute"
 import teamRoute from "./routes/teamRoute"
 
+const allowedOrigins = [
+  "https://main.dq0ml6ku7tfs7.amplifyapp.com", 
+  "http://localhost:3000", // for local dev
+];
+
 // CONFIGURATION
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(cors())
+
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // Optional: if you're sending cookies/auth headers
+  })
+);
+
 app.use(helmet())
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("dev"));
