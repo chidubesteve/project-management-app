@@ -104,22 +104,35 @@ const AuthProvider = ({
             <>{children}</> // Show the authenticated app layout
           ) : (
             // Show the login page layout
-            <div className="flex h-screen flex-col items-center gap-6">
-              <Image
-                src={
-                  "https://project-mgt-s3-images-bucket.s3.us-east-1.amazonaws.com/logo.png"
-                }
-                width={300}
-                height={250}
-                alt="logo"
-                quality={100}
-                className="h-[200px] w-auto object-contain"
-              />
-              <div>
-                <h1>Please sign in below:</h1>
+            <>
+              {/* 🔔 Alert Banner */}
+              <div
+                style={{
+                  background: "#e0f7fa",
+                  padding: "1rem",
+                  textAlign: "center",
+                  color: "#00796b",
+                }}
+              >
+                <strong>Demo Login:</strong> Username: <code>dummyUser</code> |
+                Password: <code>JustanotherPassword123!</code>
+              </div>
+              <div className="flex h-screen flex-col items-center gap-6">
+                <Image
+                  src={
+                    "https://project-mgt-s3-images-bucket.s3.us-east-1.amazonaws.com/logo.png"
+                  }
+                  width={300}
+                  height={250}
+                  alt="logo"
+                  quality={100}
+                  className="h-[200px] w-auto object-contain"
+                />
+                <div>
+                  <h1>Please sign in below:</h1>
                 </div>
-                
-            </div>
+              </div>
+            </>
           )
         }
       </Authenticator>
